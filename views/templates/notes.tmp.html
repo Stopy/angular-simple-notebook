@@ -1,0 +1,1 @@
+<div ng-repeat="note in notes" class="note"><h3>{{note.name}}</h3><div><span ng-click="toggle();" class="glyphicon glyphicon-cog"></span><span ng-click="delete(note.id)" ng-class="{hidden:visible}" class="note-delete">delete</span><span ng-click="update(note.id)" ng-class="{hidden:visible}" class="note-delete">update</span></div><p>{{note.body}}</p></div>

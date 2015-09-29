@@ -1,0 +1,151 @@
+aside{
+  padding-top: 120px;
+}
+.list-group-item:hover{
+  color: #1D8EA6;
+  cursor: pointer;
+}
+.note-list{
+  padding-top: 115px;
+  padding-bottom: 50px;
+}
+.notes{
+  padding-top: 110px;
+}
+.note-head{
+  font-size: 3em;
+  font-weight: 500;
+}
+.new-note{
+  display: block;
+  padding-top: 10px;
+  margin-top: 30px;
+  border-top: 3px solid #eee;
+  width: 400px;
+}
+.new-note button[type="submit"]{
+  margin-top: 15px;
+  display: block;
+}
+.form-close{
+  font-size: 26px;
+  color: rgba(255,50,70,0.7);
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+}
+.new-note label{
+  display: block;
+  width: 100%;
+  float: left;
+  line-height: 30px;
+  color: #444;
+  margin: 0;
+}
+.form-open{
+  margin-top: 20px;
+}
+.settings span{
+  font-size: 15px;
+  text-decoration: underline;
+  color: #999;
+  cursor: pointer;
+  margin-left: 7px;
+  line-height: 1;
+}
+.settings-btn{
+  position: relative;
+  z-index: 2;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  -webkit-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+}
+.settings-btn.opened-settings-btn{
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.settings{
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  padding-left: 5px;
+  -webkit-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  opacity: 0;
+  -webkit-transform: translateX(-30px);
+  -ms-transform: translateX(-30px);
+  -o-transform: translateX(-30px);
+  transform: translateX(-30px);
+}
+.settings.opened-settings{
+  opacity: 1;
+  -webkit-transform: translateX(0px);
+  -ms-transform: translateX(0px);
+  -o-transform: translateX(0px);
+  transform: translateX(0px);
+}
+.nav-stacked>li+li, .nav-stacked>li{
+  margin: 0;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
+.nav-pills>li>a{
+  cursor: pointer;
+  border-radius: 0;
+}
+.nav-pills>li:hover{
+  border-bottom: 1px solid transparent;
+}
+.update-note{
+  display: block;
+  padding-top: 10px;
+  width: 300px;
+}
+.update-note input, .update-note textarea{
+  margin-bottom: 5px;
+}
+.update-window{
+  width: 600px;
+  height: 300px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 25%;
+  margin: auto;
+  background-color: rgba(255,255,255,.93);
+  border-radius: 7px;
+  border: 2px solid #ccc;
+  z-index: 100;
+  -webkit-transition: 0.3s ease-out;
+  -o-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+}
+.update-window.ng-hide {
+  opacity: 0;
+  top: 0;
+  bottom: 60%;
+}
+.update-window .btn {
+  margin-top: 5px;
+}
+.update-form{
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.update-form textarea{
+  resize: none;
+  height: 70px;
+}
+.update-form input,.update-form textarea {
+  margin-bottom: 8px;
+}

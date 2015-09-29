@@ -1,0 +1,7 @@
+div(ng-repeat="note in notes" class="note")
+  h3 {{note.name}}
+  div
+    span.glyphicon.glyphicon-cog(ng-click="toggle();")
+    span(class="note-delete" ng-click="delete(note.id)" ng-class="{hidden:visible}") delete
+    span(class="note-delete" ng-click="update(note.id)" ng-class="{hidden:visible}") update
+  p {{note.body}}

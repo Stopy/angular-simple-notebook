@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+html(lang="ru" ng-app="myNote")
+  head
+    meta(charset="UTF-8")
+    title Document
+    link(rel="stylesheet", href="/vendor/bootstrap/dist/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/css/style.css")
+    script(src="/vendor/angular/angular.min.js")
+    script(src="/vendor/angular-animate/angular-animate.min.js")
+    script(src="/js/app.js")
+  body
+    .update-window(modal-window="true" ng-show="shows['update']")
+      div.form-close(ng-click="close()")
+        button.btn.btn-sm.btn-danger Close
+      form(novalidate).update-form
+        label(for="name") Name:
+        input(type="text", name="name", id="name", ng-model="name").form-control
+        label(for="name") Body:
+        textarea(type="text", name="body", id="body", ng-model="body").form-control
+        button(class="btn btn-primary" type="submit" ng-click="send()") Add
+    .container-fluid
+      .row
+        .col-md-2
+          aside
+            ul.nav.nav-pills.nav-stacked
+              li
+                a Lorem ipsum
+              li
+                a Lorem ipsum
+              li
+                a Lorem ipsum
+              li
+                a Lorem ipsum
+              li
+                a Lorem ipsum
+        .col-md-8.notes(ng-controller="NoteController")
+          div(ng-repeat="note in notes" class="note")
+            h3 {{note.name}}
+            div(toggle-elem="true")
+              span.settings-btn.glyphicon.glyphicon-cog(ng-click="toggle();" ng-class="{'opened-settings-btn': !visible}")
+              div.settings(ng-hide="visible" ng-class="{'opened-settings': !visible}")
+                span(class="note-delete" ng-click="delete(note.id)") delete
+                span(class="note-delete" modal-window="true" site='{{hi}}' ng-click="open('update', note.id)") update
+            p {{note.body}}
+          div(toggle-elem="true")
+            button.btn.btn-primary.btn-lg(ng-class="{hidden:!visible}" ng-click="toggle()").form-open Click to create new Note
+            form(ng-class="{hidden:visible}",).new-note
+              div.form-close(ng-click="toggle()")
+                button.btn.btn-sm.btn-danger Close
+              label(for="name") Name:
+              input(type="text", name="name", id="name", ng-model="name", required).form-control
+              label(for="name") Body:
+              textarea(type="text", name="body", id="body", ng-model="body", required).form-control
+              button(class="btn btn-primary" type="submit" ng-click="send()") Add
