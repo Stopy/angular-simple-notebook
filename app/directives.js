@@ -1,13 +1,7 @@
-// Для модальных окон похимичить с rootScope --- old solution
-// Кажется, у одной и той же директивы в разных местах одна и та же область видимости --- ошибся
-// Нужно порыть чужие решения
-// Сделал через рутскоуп, не доволен
-
-
 app.directive('toggleElem', function(){
   return {
     restrict: 'A',
-    controller: function($scope){
+    controller: function($scope){ // For the visibility settings of DOM elements
       $scope.visible = true;
 
       $scope.toggle = function(){
@@ -21,34 +15,27 @@ app.directive('modalWindow', function(){
   return {
     restrict: 'A',
     scope: true,
-    controller: function($rootScope, $scope, $http){
+    controller: function($rootScope, $scope, $http, noteSrv){
       $rootScope.shows = {};
-
-      $scope.open = function(windowName, updateId){
+      $scope.open = function(windowName, updateId){ // Open a modal window
         $rootScope.shows[windowName] = true;
         $rootScope.updateId = updateId;
       };
 
-      $scope.close = function(){
+      $scope.close = function(){ // Close all modal windows
         $rootScope.shows = {};
       };
 
-      $scope.send = function(){
-        $http.put('/note', {updateId: $scope.updateId, name: $scope.name, body: $scope.body}).
-        success(function(data){
-          $scope.close();
+      $scope.send = function(){ // Send an updated note
+        noteSrv.updateNotes(
+          {updateId: $scope.updateId,
+          name: $scope.name,
+          body: $scope.body}, function(err, data){
+          if (err) return alert(err);
+          $scope.close(); // Close modal window
           $scope.name = '';
           $scope.body = '';
-          $http.get('/notes').
-          success(function(data){
-            $rootScope.notes = data;
-          }).
-          error(function(data){
-            alert('Error: ' + data);
-          });
-        }).
-        error(function(data){
-          alert('Error: ' + data);
+          $rootScope.notes = data;
         });
       };
     }

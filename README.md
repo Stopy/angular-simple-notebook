@@ -8,7 +8,7 @@ npm install
 bower install
 ```
 ```
-gulp
+node app.js
 ```
 
 Server started at
