@@ -1,30 +1,31 @@
 var app = angular.module('myNote', ['ngAnimate']);
 
 app.controller('NoteController', function($scope, $rootScope, $http, noteSrv){
-  noteSrv.getNotes(function(err, data){
-    if (err) return alert('Error: '+ data);
-    $rootScope.notes = data;
+  $scope.listEnded = false;
+
+  noteSrv.getNotes(0, function(err, data){
+    if (err) return alert('Error: '+ err);
+    $scope.listEnded = data.listEnded;
+    $rootScope.notes = data.newList;
   });
 
   $scope.delete = function(deleteId){
     noteSrv.deleteNotes(deleteId, function(err, data){
-      if (err) return alert('Error: '+ data);
+      if (err) return alert('Error: '+ err);
       $rootScope.notes = data;
     });
   };
 
-  $scope.send = function(){
-    var note = {};
-    note.name = $scope.name;
-    note.body = $scope.body;
-    noteSrv.addNotes(note, function(err, data){
-      if (err) return alert('Error: '+ data);
-      $rootScope.notes = data;
-      $scope.toggle();
-      $scope.name = '';
-      $scope.body = '';
-    });
+  $scope.loadMore = function(count){
+    noteSrv.getNotes(count, function(err, data){
+      if (err) return alert('Error: '+ err);
 
+      var list = data.newList;
+      $scope.listEnded = data.listEnded;
+      list.forEach(function(element){
+        $scope.notes.push(element);
+      });
+    });
   };
 
 });

@@ -10,40 +10,22 @@ aside{
   padding-bottom: 50px;
 }
 .notes{
+  position: relative;
   padding-top: 110px;
 }
 .note-head{
   font-size: 3em;
   font-weight: 500;
 }
-.new-note{
-  display: block;
-  padding-top: 10px;
-  margin-top: 30px;
-  border-top: 3px solid #eee;
-  width: 400px;
-}
-.new-note button[type="submit"]{
-  margin-top: 15px;
-  display: block;
-}
 .form-close{
+  position: absolute;
+  right: 7px;
+  display: block;
   font-size: 26px;
   color: rgba(255,50,70,0.7);
   text-align: center;
   cursor: pointer;
   font-weight: bold;
-}
-.new-note label{
-  display: block;
-  width: 100%;
-  float: left;
-  line-height: 30px;
-  color: #444;
-  margin: 0;
-}
-.form-open{
-  margin-top: 20px;
 }
 .settings span{
   font-size: 15px;
@@ -113,14 +95,10 @@ aside{
 .update-note input, .update-note textarea{
   margin-bottom: 5px;
 }
-.update-window{
+.modal-window{
   width: 600px;
   height: 300px;
   position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 25%;
   margin: auto;
   background-color: rgba(255,255,255,.93);
   border-radius: 7px;
@@ -130,22 +108,56 @@ aside{
   -o-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
 }
+.modal-window h3{
+  text-align: center;
+}
+.update-window{
+  opacity: 1;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 25%;
+}
 .update-window.ng-hide {
   opacity: 0;
   top: 0;
   bottom: 60%;
 }
-.update-window .btn {
+.add-window {
+  opacity: 1;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 25%;
+}
+.add-window.ng-hide {
+  opacity: 0;
+  top: 60%;
+  bottom: 0;
+}
+.modal-window .btn {
   margin-top: 5px;
 }
-.update-form{
+.modal-form{
   padding-left: 30px;
   padding-right: 30px;
 }
-.update-form textarea{
+.modal-form textarea{
   resize: none;
   height: 70px;
 }
-.update-form input,.update-form textarea {
+.modal-form input,.modal-form textarea {
   margin-bottom: 8px;
+}
+.add-post-btn{
+  display: block;
+  position: absolute;
+  right: 15%;
+  border: none;
+  font-size: 30px;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  outline: none;
 }

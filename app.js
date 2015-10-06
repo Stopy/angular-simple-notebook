@@ -28,21 +28,36 @@ console.log(process.env.NODE_ENV || 'development');
 
 var server = app.listen(8080, function () {
 
-  var id = 0;
-  var notes = [{id: 0, name: 'Hey', body: "I'm body"}];
+  var id = 5;
+  var notes = [
+  {id: 0, name: 'Hey', body: "I'm body"},
+  {id: 1, name: 'Hey you', body: "I'm body"},
+  {id: 2, name: 'Hey 1', body: "I'm body"},
+  {id: 3, name: 'Hey you 2', body: "I'm body"},
+  {id: 4, name: 'Hey 3', body: "I'm body"},
+  {id: 5, name: 'Hey you 4', body: "I'm body"}];
 
   app.get('/', function(req,res,next){
     res.sendFile(__dirname + '/views/index.html');
   });
 
-  app.get('/notes', function(req,res,next){
-    res.json(notes);
+  app.get('/notes/:count?', function(req,res,next){
+    var count = parseInt(req.params.count) || 0;
+    var newList = [];
+    var listEnded = false;
+    for (var i = count; i < count + 3 && i < notes.length; i++) {
+      newList.push(notes[i]);
+      if (i+1 === notes.length) {
+        listEnded = true;
+      }
+    }
+    res.json({newList:newList, listEnded: listEnded});
   });
 
   app.post('/note', function(req,res,next){
     id++;
     req.body.id = id;
-    notes.push(req.body);
+    notes.splice(0,0,req.body);
     console.log('Added: id = ' + id);
     res.end();
   });
