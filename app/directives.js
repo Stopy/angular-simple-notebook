@@ -48,6 +48,7 @@ app.directive('modalWindow', function(){
         noteSrv.addNotes(note, function(err, data){
           if (err) return alert('Error: '+ data);
           $rootScope.notes = data.newList;
+          $rootScope.listEnded = data.listEnded;
           $scope.name = '';
           $scope.body = '';
         });
